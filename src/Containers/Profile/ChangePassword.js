@@ -16,10 +16,13 @@ class ChangePassword extends Component {
         }
     }
     handleChange = ({ target: { name, value } }) => this.setState({ [name]: value })
-    changePasswordCallBack = ( status, err) => {
+    changePasswordCallBack = (status, err) => {
+        this.setState({ currentPassword: '', newPassword: '', confirmNewPassword: '' })
+        this.props.toggleViewType()
         status === 'success'
             ? message.success('password changed successfully !')
             : message.error(err.response && err.response.data && err.response.data.error)
+
     }
 
     handleChangePassword = () => {
@@ -30,65 +33,55 @@ class ChangePassword extends Component {
     }
     render() {
         const { currentPassword, newPassword, confirmNewPassword } = this.state;
-
+        const { toggleViewType, changingPassword } = this.props;
         const disabled = !newPassword || newPassword !== confirmNewPassword
         return (
             <>
-                <ViewEditCard>
-                    {({ viewType }, toggleViewType) => (
-                        viewType === 'view'
-                            ? <a onClick={() => toggleViewType()}>change password</a>
-                            :
-                            <>
-                                <TextInput
-                                    isRequired
-                                    type='password'
-                                    name='currentPassword'
-                                    value={currentPassword}
-                                    onChange={this.handleChange}
-                                    placeholder='Current password'
-                                />
-                                <TextInput
-                                    isRequired
-                                    type='password'
-                                    name='newPassword'
-                                    value={newPassword}
-                                    onChange={this.handleChange}
-                                    placeholder='New password'
-                                />
-                                <TextInput
-                                    isRequired
-                                    type='password'
-                                    name='confirmNewPassword'
-                                    value={confirmNewPassword}
-                                    onChange={this.handleChange}
-                                    placeholder='Confirm new password'
-                                />
-                                <Button
-                                    type='primary'
-                                    // loading={logging}
-                                    disabled={disabled}
-                                    onClick={() => {
-                                        this.handleChangePassword(toggleViewType)
-                                        // toggleViewType()
-                                    }
-                                    }
-                                    icon='login'>
-                                    Change Password</Button>
-                                <Button
-                                    type='danger'
-                                    onClick={toggleViewType}>
-                                    Cancel</Button>
-                            </>
-                    )}
-                </ViewEditCard>
+
+                <TextInput
+                    isRequired
+                    type='password'
+                    name='currentPassword'
+                    value={currentPassword}
+                    onChange={this.handleChange}
+                    placeholder='Current password'
+                />
+                <TextInput
+                    isRequired
+                    type='password'
+                    name='newPassword'
+                    value={newPassword}
+                    onChange={this.handleChange}
+                    placeholder='New password'
+                />
+                <TextInput
+                    isRequired
+                    type='password'
+                    name='confirmNewPassword'
+                    value={confirmNewPassword}
+                    onChange={this.handleChange}
+                    placeholder='Confirm new password'
+                />
+                <Button
+                    type='primary'
+                    loading={changingPassword}
+                    disabled={disabled}
+                    onClick={this.handleChangePassword}
+                    icon='login'>
+                    Change Password</Button>
+                <Button
+                    type='danger'
+                    onClick={toggleViewType}>
+                    Cancel</Button>
+
             </>
         )
     }
 }
 
 const mapStateToProps = ({ auth }) => ({
-    user: auth.user
+    user: auth.user,
+    changingPassword: auth.changingPassword
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({ changePassword }, dispatch)

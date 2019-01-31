@@ -10,7 +10,6 @@ class EmailValidation extends Component {
         super(props)
     }
     emailValidationCallBack = (status, err) => {
-        console.log(err.response)
         if (status === 'success') {
             message.success('email changed successfully !')
             this.props.history.push('/')
@@ -19,10 +18,6 @@ class EmailValidation extends Component {
             this.props.history.push('/')
         }
     }
-    // handleEmailValidation = () => {
-    //     const { history, match: { params: { token } } } = this.props;
-    //     this.props.validateEmail(token, this.handleEmailValidation);
-    // }
     componentDidMount() {
         console.log('inside cDM')
         const { history, validateEmail, match: { params: { token } } } = this.props;

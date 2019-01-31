@@ -35,6 +35,7 @@ export const authReducer = (state = initialState, action) => {
         case types.VALIDATE_EMAIL_REQUEST:
             return { ...state, validatingEmail: true }
         case types.VALIDATE_EMAIL_SUCCESS:
+             console.log(action.payload.user)   
             return { ...state, validatingEmail: false, user: action.payload.user }
         case types.VALIDATE_EMAIL_FAILURE:
             return { ...state, validatingEmail: false, validatingEmailError: true }

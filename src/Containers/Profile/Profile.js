@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
 import { withRouter, Link } from "react-router-dom";
-import { logout } from "../Auth/AuthAction";
 import { Button, message } from "antd";
+import { logout } from "../Auth/AuthAction";
 import { base_url } from "../../Config/config";
+import { ViewEditCard } from "../../Components/Utils";
 import ChangePassword from './ChangePassword';
 import ChangeEmail from './ChangeEmail';
 
@@ -24,11 +25,23 @@ export class Profile extends Component {
       <>
         <img src={avatarUrl} alt="" style={{ width: 100, height: 100, borderRadius: '50%' }} />
         <h3>{`Welcome ${userName}`}</h3>
-        <p>{email}</p>
-        <ChangeEmail />
+        <h2>{email}</h2>
+        <ViewEditCard>
+          {({ viewType }, toggleViewType) => (
+            viewType === 'view'
+              ? <a onClick={() => toggleViewType()}>Change email</a>
+              : <ChangeEmail toggleViewType={toggleViewType} />
+          )}
+        </ViewEditCard>
         <br />
-        <ChangePassword />
-        <br />
+        <ViewEditCard>
+          {({ viewType }, toggleViewType) => (
+            viewType === 'view'
+              ? <a onClick={() => toggleViewType()}>Change password</a>
+              : <ChangePassword toggleViewType={toggleViewType} />
+          )}
+        </ViewEditCard>
+        <br/>
         <Button type='danger' onClick={this.handleLogout}>Logout</Button>
       </>
     )
