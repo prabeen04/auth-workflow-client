@@ -19,11 +19,13 @@ class Register extends Component {
     handleChange = ({ target: { name, value } }) => this.setState({ [name]: value })
     handleFileChange = ({ target: { files } }) => this.setState({ avatar: files[0] })
     setAvatar = (avatar) => this.setState({ avatar })
-    callBack = (status) => {
-        status === 'success'
-            ? message.success('you have successfully registered !')
-            : message.error('some error occoured while registering !')
-        this.props.history.push('/login')
+    callBack = (status, err) => {
+        if (status === 'success') {
+            message.success('you have successfully Registered !')
+            this.props.history.push('/login')
+        } else {
+            message.error(err.response && err.response.data && err.response.data.error)
+        }
     }
     handleSubmit = (e) => {
         e.preventDefault()
@@ -77,7 +79,7 @@ class Register extends Component {
                             name='avatar'
                             onChange={this.handleFileChange}
                         /> */}
-                        <Upload setAvatar={this.setAvatar}/>
+                        <Upload setAvatar={this.setAvatar} />
                         <Button
                             type='primary'
                             htmlType='submit'

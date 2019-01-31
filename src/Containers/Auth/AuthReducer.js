@@ -4,10 +4,16 @@ const initialState = {
     registering: false,
     registeringError: false,
     registeringSuccess: false,
-    user:  JSON.parse(localStorage.getItem('user')),
+    user: JSON.parse(localStorage.getItem('user')),
     logging: false,
     loginError: false,
     token: localStorage.getItem('token') || '',
+    sendingEmail: false,
+    sendingEmailError: false,
+    validatingEmail: false,
+    validatingEmailError: false,
+    changingPassword: false,
+    changingPasswordError: false,
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -19,19 +25,26 @@ export const authReducer = (state = initialState, action) => {
         case types.REGISTER_FAILURE:
             return { ...state, registering: false, registeringError: true }
 
-        case types.VALIDATE_EMAIL_REQUEST:
-            return { ...state }
-        case types.VALIDATE_EMAIL_SUCCESS:
-            return { ...state }
-        case types.VALIDATE_EMAIL_FAILURE:
-            return { ...state }
+        case types.SEND_EMAIL_REQUEST:
+            return { ...state, sendingEmail: true }
+        case types.SEND_EMAIL_SUCCESS:
+            return { ...state, sendingEmail: false }
+        case types.SEND_EMAIL_FAILURE:
+            return { ...state, sendingEmail: false, sendingEmailError: true }
 
-        case types.SET_PASSWORD_REQUEST:
-            return { ...state }
-        case types.SET_PASSWORD_SUCCESS:
-            return { ...state }
-        case types.SET_PASSWORD_FAILURE:
-            return { ...state }
+        case types.VALIDATE_EMAIL_REQUEST:
+            return { ...state, validatingEmail: true }
+        case types.VALIDATE_EMAIL_SUCCESS:
+            return { ...state, validatingEmail: false, user: action.payload.user }
+        case types.VALIDATE_EMAIL_FAILURE:
+            return { ...state, validatingEmail: false, validatingEmailError: true }
+
+        case types.CHANGE_PASSWORD_REQUEST:
+            return { ...state, changingPassword: true }
+        case types.CHANGE_PASSWORD_SUCCESS:
+            return { ...state, changingPassword: false }
+        case types.CHANGE_PASSWORD_FAILURE:
+            return { ...state, changingPassword: false, changingPasswordError: true }
 
         case types.LOGIN_REQUEST:
             return { ...state, logging: true }

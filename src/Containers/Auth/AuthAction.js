@@ -3,24 +3,14 @@ import { base_url } from "../../Config/config";
 import axios from 'axios';
 
 /**
- * user registration goes here, any person can register .
- * after registration success the person will get an email to activate his/her account
+ * user registration 
  */
 export const register = (user, cb) => dispatch => {
-    console.log(user)
-    const formData = new FormData();
-    formData.append('avatar', user.avatar);
     dispatch({
         type: types.REGISTER_REQUEST
     })
 
-    axios.post(`${base_url}/register`, user
-    // , {
-    //     headers: {
-    //         'content-type': 'multipart/form-data'
-    //     }
-    // }
-    )
+    axios.post(`${base_url}/register`, user)
         .then(res => {
             console.log(res)
             dispatch({
@@ -35,14 +25,13 @@ export const register = (user, cb) => dispatch => {
             dispatch({
                 type: types.REGISTER_FAILURE
             })
-            cb('error')
+            cb('error', err)
         })
 
 }
+
 /**
- * Email validation goes here 
- * this method is a called when user click on the email activation link
- * this method verify the token and if user is verified it send them to profile page
+ * Email validation 
  */
 export const validateEmail = (token, cb) => dispatch => {
     console.log(token)
@@ -52,48 +41,76 @@ export const validateEmail = (token, cb) => dispatch => {
     axios.post(`${base_url}/changeEmail`, { token })
         .then(res => {
             console.log(res)
-            if (res.data === true) {
-                console.log('email is valid')
-               cb()
-            }
+            localStorage.setItem('user', JSON.stringify(res.data.user))
+            dispatch({
+                type: types.VALIDATE_EMAIL_SUCCESS,
+                payload: res.data
+            })
+            cb('success')
         })
         .catch(err => {
             console.log(err)
+            dispatch({
+                type: types.VALIDATE_EMAIL_FAILURE
+            })
+            cb('error', err)
         })
 
 }
+
+/**
+ * send request to change email of a user
+ */
 export const changeEmail = (user, cb) => dispatch => {
     console.log(user)
-    // dispatch({
-    //     type: types.VALIDATE_EMAIL_REQUEST
-    // })
+    dispatch({
+        type: types.SEND_EMAIL_REQUEST
+    })
     axios.post(`${base_url}/sendMail`, user)
         .then(res => {
             console.log(res)
-               cb()
+            dispatch({
+                type: types.SEND_EMAIL_SUCCESS
+            })
+            cb('success')
         })
         .catch(err => {
             console.log(err)
+            dispatch({
+                type: types.SEND_EMAIL_FAILURE
+            })
+            cb('error')
         })
 
 }
+
 /**
  * change password
  */
 export const changePassword = (user, cb) => dispatch => {
     console.log(user)
+    dispatch({
+        type: types.CHANGE_PASSWORD_REQUEST
+    })
     axios.put(`${base_url}/changePassword`, user)
         .then(res => {
             console.log(res)
+            dispatch({
+                type: types.CHANGE_PASSWORD_SUCCESS
+            })
+            cb('success')
         })
         .catch(err => {
             console.log(err)
+            dispatch({
+                type: types.CHANGE_PASSWORD_FAILURE
+            })
+            cb('error', err)
         })
 
 }
 /**
- * login request with username(email) and password
- * after successfull login it store the recieved token to local storage sends to dashboard 
+ * login request
  */
 export const login = (user, cb) => dispatch => {
     dispatch({
@@ -112,21 +129,17 @@ export const login = (user, cb) => dispatch => {
             cb('success')
         })
         .catch(err => {
-
             console.log(err)
-            // history.push({
-            //     pathname: '/'
-            // })
             dispatch({
                 type: types.LOGIN_FAILURE,
                 payload: err
             })
-            cb('error')
+            cb('error', err)
         })
 }
+
 /**
- * login request with username(email) and password
- * after successfull login it store the recieved token to local storage sends to dashboard 
+ * login with google
  */
 export const googleLogin = (user, cb) => dispatch => {
     console.log(user)

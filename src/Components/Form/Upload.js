@@ -1,5 +1,5 @@
 import React from 'react';
-import { Upload, Icon } from 'antd';
+import { Upload, Icon, message } from 'antd';
 import { base_url } from '../../Config/config';
 import axios from 'axios';
 const token = localStorage.getItem('token');
@@ -8,7 +8,18 @@ class MyUpload extends React.Component {
     state = {
         fileList: [],
     };
-
+    // handleBeforeUpload = (file) => {
+    //     console.log(file)
+    //     const isJPG = file.type === 'image/jpeg';
+    //     if (!isJPG) {
+    //         message.error('You can only upload JPG/PNG file!');
+    //     }
+    //     const isPNG = file.type === 'image/png';
+    //     if (!isPNG) {
+    //         message.error('You can only upload JPG/PNG file!');
+    //     }
+    //     return false;
+    // }
     handleImageUpload = ({ onSuccess, onError, file }) => {
         console.log(this.props)
         let formData = new FormData();
@@ -46,8 +57,9 @@ class MyUpload extends React.Component {
                     customRequest={this.handleImageUpload}
                     listType="picture-card"
                     fileList={fileList}
-                    onPreview={this.handlePreview}
+                    // onPreview={this.handlePreview}
                     onChange={this.handleChange}
+                    // beforeUpload={this.handleBeforeUpload}
                 >
                     {fileList.length >= 1 ? null : uploadButton}
                 </Upload>

@@ -21,14 +21,17 @@ class Login extends Component {
         this.props.login(this.state, this.callBack)
         this.setState({ email: '', password: '' })
     }
-    callBack = (status) => {
-        status === 'success'
-            ? message.success('you have successfully loggedIn !')
-            : message.error('some error occoured while login !')
-        this.props.history.push('/')
+    callBack = (status, err) => {
+        if (status === 'success') {
+            message.success('you have successfully loggedIn !')
+            this.props.history.push('/')
+        } else {
+            message.error(err.response && err.response.data && err.response.data.error)
+        }
     }
     handleGoogleLoginFailure = (response) => {
-        console.log(response);
+        console.log(response)
+        message.error('Error while logging')
     }
     loginWithGoogle = (response) => {
         console.log(response)
