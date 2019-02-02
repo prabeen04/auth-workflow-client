@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, message } from "antd";
 import TextInput from "../../Components/Form/TextInput";
-import { ViewEditCard } from "../../Components/Utils";
 import { changePassword } from "../Auth/AuthAction";
 
 class ChangePassword extends Component {

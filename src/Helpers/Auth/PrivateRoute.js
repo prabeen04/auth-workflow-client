@@ -3,9 +3,6 @@ import { connect } from "react-redux";
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import { message } from "antd";
 class PrivateRoute extends React.Component {
-    constructor(props) {
-        super(props)
-    }
     componentWillMount() {
         if (!this.props.token) {
             this.props.history.push('/login');

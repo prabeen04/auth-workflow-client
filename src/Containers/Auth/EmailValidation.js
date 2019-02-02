@@ -3,12 +3,9 @@ import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { validateEmail } from "./AuthAction";
-import { Button, message } from "antd";
+import { message } from "antd";
 
 class EmailValidation extends Component {
-    constructor(props) {
-        super(props)
-    }
     emailValidationCallBack = (status, err) => {
         if (status === 'success') {
             message.success('email changed successfully !')
@@ -20,7 +17,7 @@ class EmailValidation extends Component {
     }
     componentDidMount() {
         console.log('inside cDM')
-        const { history, validateEmail, match: { params: { token } } } = this.props;
+        const { validateEmail, match: { params: { token } } } = this.props;
         validateEmail(token, this.emailValidationCallBack);
     }
     render() {
