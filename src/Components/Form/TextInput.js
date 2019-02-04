@@ -6,6 +6,7 @@ const TextInput = ({ type, name, value, placeholder, label, onChange, isRequired
         <div data-testid='input-wrapper' className='input-wrapper'>
             {label && <label className='input-label'>{label}</label>}
             <Input
+                data-testid='input'
                 type={type || 'text'}
                 name={name}
                 value={value}
