@@ -13,3 +13,10 @@ test('should render placeholder  ', () => {
     console.log(getByTestId('input').attributes.length)
     expect(getByTestId('input').attributes.length).toBe(1)
 })
+
+test('should display value  ', () => {
+    const value = 'myValue'
+    const { getByTestId } = render(<TextInput value='myValue'/>)
+    console.log(getByTestId('input').innerText)
+    expect(getByTestId('input').innerText).toBe('myValue')
+})
