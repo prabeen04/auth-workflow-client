@@ -3,7 +3,7 @@ import { Input } from "antd";
 
 const TextInput = ({ type, name, value, placeholder, label, onChange, isRequired, errorMessage, ...rest }) => {
     return (
-        <div className='input-wrapper'>
+        <div data-testid='input-wrapper' className='input-wrapper'>
             {label && <label className='input-label'>{label}</label>}
             <Input
                 type={type || 'text'}
