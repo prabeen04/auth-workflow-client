@@ -109,6 +109,7 @@ export const changePassword = (user, cb) => dispatch => {
         })
 
 }
+
 /**
  * forgot password
  */
@@ -129,6 +130,31 @@ export const forgotPassword = (email, cb) => dispatch => {
             console.log(err)
             dispatch({
                 type: types.FORGOT_PASSWORD_FAILURE
+            })
+            cb('error', err)
+        })
+
+}
+/**
+ * forgot password
+ */
+export const validateResetPasswordLink = (token, cb) => dispatch => {
+    console.log(token)
+    dispatch({
+        type: types.VALIDATE_RESET_PASSWORD_LINK_REQUEST
+    })
+    axios.post(`${base_url}/forgotPassword`, { token })
+        .then(res => {
+            console.log(res)
+            dispatch({
+                type: types.VALIDATE_RESET_PASSWORD_LINK_SUCCESS
+            })
+            cb('success')
+        })
+        .catch(err => {
+            console.log(err)
+            dispatch({
+                type: types.VALIDATE_RESET_PASSWORD_LINK_FAILURE
             })
             cb('error', err)
         })

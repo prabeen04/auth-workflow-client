@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { validateEmail } from "./AuthAction";
+import { validateResetPasswordLink } from "./AuthAction";
 import { message } from "antd";
 
 class ResetPasswordLink extends Component {
-    passwordValidationCallBack = (status, err) => {
+    validateResetPasswordLinkCallBack = (status, err) => {
         if (status === 'success') {
-            message.success('email changed successfully !')
+            message.success('password link veryfied successfully !')
             this.props.history.push('/')
         } else {
             message.error(err.response && err.response.data && err.response.data.error)
@@ -16,14 +16,14 @@ class ResetPasswordLink extends Component {
         }
     }
     componentDidMount() {
-        console.log('inside cDM')
-        const { validateEmail, match: { params: { token } } } = this.props;
-        validateEmail(token, this.emailValidationCallBack);
+        console.log('inside ResetPasswordLink cDM')
+        const { validateResetPasswordLink, match: { params: { token } } } = this.props;
+        validateResetPasswordLink(token, this.validateResetPasswordLink);
     }
     render() {
-        const { validatingEmail, validatingEmailError } = this.props;
-        if (validatingEmail) return <p>Validating email ...</p>
-        if (validatingEmailError) return <p>Error while validating email ...</p>
+        const { validatingResetPasswordLink, validatingResetPasswordLinkError } = this.props;
+        if (validatingResetPasswordLink) return <p>Validating email ...</p>
+        if (validatingResetPasswordLinkError) return <p>Error while validating email ...</p>
         return (
             <>
                 <Link to='/'>Home</Link>
@@ -33,8 +33,9 @@ class ResetPasswordLink extends Component {
 }
 
 const mapStateToProps = ({ auth }) => ({
-    validatingEmail: auth.validatingEmail
+    validatingResetPasswordLink: auth.validatingResetPasswordLink,
+    validatingResetPasswordLinkError: auth.validatingResetPasswordLinkError,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({ validateEmail }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ validateResetPasswordLink }, dispatch)
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ResetPasswordLink));
