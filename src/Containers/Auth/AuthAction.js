@@ -117,7 +117,7 @@ export const forgotPassword = (email, cb) => dispatch => {
     dispatch({
         type: types.FORGOT_PASSWORD_REQUEST
     })
-    axios.put(`${base_url}/forgotPassword`, { email })
+    axios.post(`${base_url}/forgotPassword`, { email })
         .then(res => {
             console.log(res)
             dispatch({
