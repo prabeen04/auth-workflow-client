@@ -14,6 +14,8 @@ const initialState = {
     validatingEmailError: false,
     changingPassword: false,
     changingPasswordError: false,
+    forgotPassword: false,
+    forgotPasswordError: false,
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -35,7 +37,7 @@ export const authReducer = (state = initialState, action) => {
         case types.VALIDATE_EMAIL_REQUEST:
             return { ...state, validatingEmail: true }
         case types.VALIDATE_EMAIL_SUCCESS:
-             console.log(action.payload.user)   
+            console.log(action.payload.user)
             return { ...state, validatingEmail: false, user: action.payload.user }
         case types.VALIDATE_EMAIL_FAILURE:
             return { ...state, validatingEmail: false, validatingEmailError: true }
@@ -46,6 +48,13 @@ export const authReducer = (state = initialState, action) => {
             return { ...state, changingPassword: false }
         case types.CHANGE_PASSWORD_FAILURE:
             return { ...state, changingPassword: false, changingPasswordError: true }
+
+        case types.FORGOT_PASSWORD_REQUEST:
+            return { ...state, forgotPassword: true }
+        case types.FORGOT_PASSWORD_SUCCESS:
+            return { ...state, forgotPassword: false }
+        case types.FORGOT_PASSWORD_FAILURE:
+            return { ...state, forgotPassword: false, forgotPasswordError: true }
 
         case types.LOGIN_REQUEST:
             return { ...state, logging: true }

@@ -110,6 +110,31 @@ export const changePassword = (user, cb) => dispatch => {
 
 }
 /**
+ * forgot password
+ */
+export const forgotPassword = (email, cb) => dispatch => {
+    console.log(email)
+    dispatch({
+        type: types.FORGOT_PASSWORD_REQUEST
+    })
+    axios.put(`${base_url}/forgotPassword`, { email })
+        .then(res => {
+            console.log(res)
+            dispatch({
+                type: types.FORGOT_PASSWORD_SUCCESS
+            })
+            cb('success')
+        })
+        .catch(err => {
+            console.log(err)
+            dispatch({
+                type: types.FORGOT_PASSWORD_FAILURE
+            })
+            cb('error', err)
+        })
+
+}
+/**
  * login request
  */
 export const login = (user, cb) => dispatch => {
