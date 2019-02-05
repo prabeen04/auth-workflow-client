@@ -11,6 +11,7 @@ import AppErrorBoundary from './Helpers/ErrorBoundary/AppErrorBoundary'
 const Register = lazy(() => import('./Containers/Auth/Register'));
 const Login = lazy(() => import('./Containers/Auth/Login'));
 const EmailValidation = lazy(() => import('./Containers/Auth/EmailValidation'));
+const ForgotPassword = lazy(() => import('./Containers/Auth/ForgotPassword'))
 const Profile = lazy(() => import('./Containers/Profile/Profile'));
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/emailValidation/:token" component={EmailValidation} />
+              <Route exact path="/forgotPassword" component={ForgotPassword} />
               <PrivateRoute path="/" component={Profile} />
             </Switch>
           </Suspense>

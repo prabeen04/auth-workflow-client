@@ -79,7 +79,8 @@ class Login extends Component {
                     onFailure={this.handleGoogleLoginFailure}
                 />
                 <br />
-                <Link to='/register' style={{ textAlign: 'center' }}>Don't have an account? Register</Link>
+                <Link to='/register' style={{ textAlign: 'center' }}>Don't have an account? Register </Link> |   
+                <Link to='/forgotPassword' style={{ textAlign: 'center' }}> Forgot password?</Link>
             </>
         )
     }
