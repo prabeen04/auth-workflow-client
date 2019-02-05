@@ -6,11 +6,12 @@ import { Button, message } from "antd";
 import { } from "./AuthAction";
 import TextInput from "../../Components/Form/TextInput";
 
-class ForgotPassword extends Component {
+class SetPassword extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            email: '',
+            newPassword: '',
+            confirmNewPassword: '',
         }
     }
     handleChange = ({ target: { name, value } }) => this.setState({ [name]: value })
@@ -20,27 +21,37 @@ class ForgotPassword extends Component {
 
     render() {
         const { } = this.props
-        const { email } = this.state;
+        const { newPassword, confirmNewPassword } = this.state;
+        const disabled = !newPassword || newPassword !== confirmNewPassword
         return (
             <>
                 <h3 className='title'>Forgot password</h3>
                 <form onSubmit={this.handleSubmit} method='post'>
                     <TextInput
                         isRequired
-                        type='email'
-                        name='email'
-                        value={email}
+                        type='password'
+                        name='newPassword'
+                        value={newPassword}
                         onChange={this.handleChange}
-                        placeholder='example@example.com'
-                        label='Enter registered email'
+                        placeholder='******'
+                        label='New password'
+                    />
+                    <TextInput
+                        isRequired
+                        type='password'
+                        name='confirmNewPassword'
+                        value={confirmNewPassword}
+                        onChange={this.handleChange}
+                        placeholder='******'
+                        label='Confirm new password'
                     />
                     <Button
                         type='primary'
                         htmlType='submit'
                         loading={false}
-                        disabled={!email}
+                        disabled={disabled}
                         icon='login'>
-                        Reset password</Button>
+                        Set password</Button>
                 </form>
                 <br />
                 <Link to='/login' style={{ textAlign: 'center' }}>Back to login</Link>
@@ -52,4 +63,4 @@ const mapStateToProps = ({ auth }) => ({
 
 });
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch)
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ForgotPassword));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SetPassword));
