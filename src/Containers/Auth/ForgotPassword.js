@@ -20,7 +20,7 @@ class ForgotPassword extends Component {
     }
 
     render() {
-        const {forgotPassword } = this.props
+        const { forgotPasswordRequest } = this.props
         const { email } = this.state;
         return (
             <>
@@ -38,7 +38,7 @@ class ForgotPassword extends Component {
                     <Button
                         type='primary'
                         htmlType='submit'
-                        loading={forgotPassword}
+                        loading={forgotPasswordRequest}
                         disabled={!email}
                         icon='login'>
                         Reset password</Button>
@@ -50,7 +50,7 @@ class ForgotPassword extends Component {
     }
 }
 const mapStateToProps = ({ auth }) => ({
-    forgotPassword: auth.forgotPassword,
+    forgotPasswordRequest: auth.forgotPasswordRequest,
 });
 const mapDispatchToProps = dispatch => bindActionCreators({
     forgotPassword

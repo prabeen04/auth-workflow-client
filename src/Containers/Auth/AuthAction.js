@@ -143,7 +143,7 @@ export const validateResetPasswordLink = (token, cb) => dispatch => {
     dispatch({
         type: types.VALIDATE_RESET_PASSWORD_LINK_REQUEST
     })
-    axios.post(`${base_url}/forgotPassword`, { token })
+    axios.post(`${base_url}/resetPassword`, { token })
         .then(res => {
             console.log(res)
             dispatch({

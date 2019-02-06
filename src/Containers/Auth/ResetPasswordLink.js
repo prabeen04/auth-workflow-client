@@ -9,7 +9,7 @@ class ResetPasswordLink extends Component {
     validateResetPasswordLinkCallBack = (status, err) => {
         if (status === 'success') {
             message.success('password link veryfied successfully !')
-            this.props.history.push('/')
+            this.props.history.push('/setPassword')
         } else {
             message.error(err.response && err.response.data && err.response.data.error)
             this.props.history.push('/')
@@ -18,7 +18,7 @@ class ResetPasswordLink extends Component {
     componentDidMount() {
         console.log('inside ResetPasswordLink cDM')
         const { validateResetPasswordLink, match: { params: { token } } } = this.props;
-        validateResetPasswordLink(token, this.validateResetPasswordLink);
+        validateResetPasswordLink(token, this.validateResetPasswordLinkCallBack);
     }
     render() {
         const { validatingResetPasswordLink, validatingResetPasswordLinkError } = this.props;

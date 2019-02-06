@@ -16,8 +16,8 @@ const initialState = {
     validatingResetPasswordLinkError: false,
     changingPassword: false,
     changingPasswordError: false,
-    forgotPassword: false,
-    forgotPasswordError: false,
+    forgotPasswordRequest: false,
+    forgotPasswordRequestError: false,
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -47,7 +47,6 @@ export const authReducer = (state = initialState, action) => {
         case types.VALIDATE_RESET_PASSWORD_LINK_REQUEST:
             return { ...state, validatingResetPasswordLink: true }
         case types.VALIDATE_RESET_PASSWORD_LINK_SUCCESS:
-            console.log(action.payload.user)
             return { ...state, validatingResetPasswordLink: false }
         case types.VALIDATE_RESET_PASSWORD_LINK_FAILURE:
             return { ...state, validatingResetPasswordLink: false, validatingResetPasswordLinkError: true }
@@ -60,11 +59,11 @@ export const authReducer = (state = initialState, action) => {
             return { ...state, changingPassword: false, changingPasswordError: true }
 
         case types.FORGOT_PASSWORD_REQUEST:
-            return { ...state, forgotPassword: true }
+            return { ...state, forgotPasswordRequest: true }
         case types.FORGOT_PASSWORD_SUCCESS:
-            return { ...state, forgotPassword: false }
+            return { ...state, forgotPasswordRequest: false }
         case types.FORGOT_PASSWORD_FAILURE:
-            return { ...state, forgotPassword: false, forgotPasswordError: true }
+            return { ...state, forgotPasswordRequest: false, forgotPasswordRequestError: true }
 
         case types.LOGIN_REQUEST:
             return { ...state, logging: true }
