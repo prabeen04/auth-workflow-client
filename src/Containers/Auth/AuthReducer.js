@@ -18,6 +18,8 @@ const initialState = {
     changingPasswordError: false,
     forgotPasswordRequest: false,
     forgotPasswordRequestError: false,
+    settingPasswordRequest: false,
+    settingPasswordRequestError: false,
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -64,6 +66,13 @@ export const authReducer = (state = initialState, action) => {
             return { ...state, forgotPasswordRequest: false }
         case types.FORGOT_PASSWORD_FAILURE:
             return { ...state, forgotPasswordRequest: false, forgotPasswordRequestError: true }
+
+        case types.SET_PASSWORD_REQUEST:
+            return { ...state, settingPasswordRequest: true }
+        case types.SET_PASSWORD_SUCCESS:
+            return { ...state, settingPasswordRequest: false }
+        case types.SET_PASSWORD_FAILURE:
+            return { ...state, settingPasswordRequest: false, settingPasswordRequestError: true }
 
         case types.LOGIN_REQUEST:
             return { ...state, logging: true }

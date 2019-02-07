@@ -135,6 +135,31 @@ export const forgotPassword = (email, cb) => dispatch => {
         })
 
 }
+
+/**
+ * forgot password
+ */
+export const setPassword = (newPasssword, id, cb) => dispatch => {
+    dispatch({
+        type: types.SET_PASSWORD_REQUEST
+    })
+    axios.post(`${base_url}/setPassword`, { newPasssword, id })
+        .then(res => {
+            console.log(res)
+            dispatch({
+                type: types.SET_PASSWORD_SUCCESS
+            })
+            cb('success')
+        })
+        .catch(err => {
+            console.log(err)
+            dispatch({
+                type: types.SET_PASSWORD_FAILURE
+            })
+            cb('error', err)
+        })
+
+}
 /**
  * forgot password
  */
