@@ -139,11 +139,12 @@ export const forgotPassword = (email, cb) => dispatch => {
 /**
  * forgot password
  */
-export const setPassword = (newPasssword, id, cb) => dispatch => {
+export const setPassword = (newPassword, id, cb) => dispatch => {
+    console.log(newPassword, id)
     dispatch({
         type: types.SET_PASSWORD_REQUEST
     })
-    axios.post(`${base_url}/setPassword`, { newPasssword, id })
+    axios.post(`${base_url}/setPassword`, { newPassword, id })
         .then(res => {
             console.log(res)
             dispatch({
