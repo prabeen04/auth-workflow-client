@@ -15,7 +15,13 @@ class SetPassword extends Component {
         }
     }
     setPasswordCallBack = (status, res) => {
-
+        if (status === 'success') {
+            message.success('password is set successfully !')
+            this.props.history.push('/login')
+        } else {
+            message.error(res.response && res.response.data && res.response.data.error)
+            this.props.history.push('/login')
+        }
     }
     handleChange = ({ target: { name, value } }) => this.setState({ [name]: value })
     handleSubmit = (e) => {
