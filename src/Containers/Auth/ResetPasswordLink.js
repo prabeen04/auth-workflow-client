@@ -6,12 +6,15 @@ import { validateResetPasswordLink } from "./AuthAction";
 import { message } from "antd";
 
 class ResetPasswordLink extends Component {
-    validateResetPasswordLinkCallBack = (status, err) => {
+    validateResetPasswordLinkCallBack = (status, res) => {
         if (status === 'success') {
             message.success('password link veryfied successfully !')
-            this.props.history.push('/setPassword')
+            this.props.history.push({
+                pathname: '/setPassword',
+                state: { id: res.data.id }
+              })
         } else {
-            message.error(err.response && err.response.data && err.response.data.error)
+            message.error(res.response && res.response.data && res.response.data.error)
             this.props.history.push('/')
         }
     }

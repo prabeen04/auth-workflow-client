@@ -149,7 +149,7 @@ export const validateResetPasswordLink = (token, cb) => dispatch => {
             dispatch({
                 type: types.VALIDATE_RESET_PASSWORD_LINK_SUCCESS
             })
-            cb('success')
+            cb('success', res)
         })
         .catch(err => {
             console.log(err)

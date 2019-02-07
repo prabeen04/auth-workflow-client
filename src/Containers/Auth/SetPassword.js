@@ -16,11 +16,12 @@ class SetPassword extends Component {
     }
     handleChange = ({ target: { name, value } }) => this.setState({ [name]: value })
     handleSubmit = (e) => {
+        const { location: { state: { id } } } = this.props
+        const { newPassword } = this.state;
         e.preventDefault()
     }
 
     render() {
-        const { } = this.props
         const { newPassword, confirmNewPassword } = this.state;
         const disabled = !newPassword || newPassword !== confirmNewPassword
         return (
