@@ -45,7 +45,7 @@ class Register extends Component {
                             value={userName}
                             onChange={this.handleChange}
                             placeholder='John'
-                            label='First name'
+                            label='User name'
                         />
                         <TextInput
                             isRequired
