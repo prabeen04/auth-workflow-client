@@ -26,6 +26,7 @@ export class Profile extends Component {
         <img src={avatarUrl} alt="" style={{ width: 100, height: 100, borderRadius: '50%' }} />
         <h3>{`Welcome ${userName}`}</h3>
         <h2>{email}</h2>
+        
         <ViewEditCard>
           {({ viewType }, toggleViewType) => (
             viewType === 'view'
@@ -34,13 +35,13 @@ export class Profile extends Component {
           )}
         </ViewEditCard>
         <br />
-        <ViewEditCard>
+        {/* <ViewEditCard>
           {({ viewType }, toggleViewType) => (
             viewType === 'view'
               ? <a onClick={() => toggleViewType()}>Change password</a>
               : <ChangePassword toggleViewType={toggleViewType} />
           )}
-        </ViewEditCard>
+        </ViewEditCard> */}
         <br/>
         <Button type='danger' onClick={this.handleLogout}>Logout</Button>
       </>
