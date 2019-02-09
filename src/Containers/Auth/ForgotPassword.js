@@ -24,27 +24,29 @@ class ForgotPassword extends Component {
         const { email } = this.state;
         return (
             <>
-                <h3 className='title'>Forgot password</h3>
-                <form onSubmit={this.handleSubmit} method='post'>
-                    <TextInput
-                        isRequired
-                        type='email'
-                        name='email'
-                        value={email}
-                        onChange={this.handleChange}
-                        placeholder='example@example.com'
-                        label='Enter registered email'
-                    />
-                    <Button
-                        type='primary'
-                        htmlType='submit'
-                        loading={forgotPasswordRequest}
-                        disabled={!email}
-                        icon='login'>
-                        Reset password</Button>
-                </form>
-                <br />
-                <Link to='/login' style={{ textAlign: 'center' }}>Back to login</Link>
+                <div className='container'>
+                    <h3 className='title'>Forgot password</h3>
+                    <form onSubmit={this.handleSubmit} method='post'>
+                        <TextInput
+                            isRequired
+                            type='email'
+                            name='email'
+                            value={email}
+                            onChange={this.handleChange}
+                            placeholder='example@example.com'
+                            label='Enter registered email'
+                        />
+                        <Button
+                            type='primary'
+                            htmlType='submit'
+                            loading={forgotPasswordRequest}
+                            disabled={!email}
+                            icon='login'>
+                            Reset password</Button>
+                    </form>
+                    <br />
+                    <Link to='/login' style={{ textAlign: 'center' }}>Back to login</Link>
+                </div>
             </>
         )
     }

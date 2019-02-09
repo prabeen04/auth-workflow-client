@@ -19,7 +19,7 @@ const Profile = lazy(() => import('./Containers/Profile/Profile'));
 class App extends Component {
   render() {
     return (
-      <div className='container'>
+      <>
         <AppErrorBoundary>
           <Suspense fallback={'loading...'}>
             <Switch>
@@ -33,7 +33,7 @@ class App extends Component {
             </Switch>
           </Suspense>
         </AppErrorBoundary>
-      </div>
+      </>
     );
   }
 }

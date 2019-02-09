@@ -44,43 +44,46 @@ class Login extends Component {
         const disabled = !email || !password
         return (
             <>
-                <h3 className='title'>Login</h3>
-                <form onSubmit={this.handleSubmit} method='post'>
-                    <TextInput
-                        isRequired
-                        type='email'
-                        name='email'
-                        value={email}
-                        onChange={this.handleChange}
-                        placeholder='example@example.com'
-                        label='Email'
+                <div className='container'>
+
+                    <h3 className='title'>Login</h3>
+                    <form onSubmit={this.handleSubmit} method='post'>
+                        <TextInput
+                            isRequired
+                            type='email'
+                            name='email'
+                            value={email}
+                            onChange={this.handleChange}
+                            placeholder='example@example.com'
+                            label='Email'
+                        />
+                        <TextInput
+                            isRequired
+                            type='password'
+                            name='password'
+                            value={password}
+                            onChange={this.handleChange}
+                            placeholder='******'
+                            label='Password'
+                        />
+                        <Button
+                            type='primary'
+                            htmlType='submit'
+                            loading={logging}
+                            disabled={disabled}
+                            icon='login'>
+                            Login</Button>
+                    </form>
+                    <GoogleLogin
+                        clientId="553440503285-rgciog1jtcen74j5hq1ojul6o4b93erh.apps.googleusercontent.com"
+                        buttonText="Login"
+                        onSuccess={this.loginWithGoogle}
+                        onFailure={this.handleGoogleLoginFailure}
                     />
-                    <TextInput
-                        isRequired
-                        type='password'
-                        name='password'
-                        value={password}
-                        onChange={this.handleChange}
-                        placeholder='******'
-                        label='Password'
-                    />
-                    <Button
-                        type='primary'
-                        htmlType='submit'
-                        loading={logging}
-                        disabled={disabled}
-                        icon='login'>
-                        Login</Button>
-                </form>
-                <GoogleLogin
-                    clientId="553440503285-rgciog1jtcen74j5hq1ojul6o4b93erh.apps.googleusercontent.com"
-                    buttonText="Login"
-                    onSuccess={this.loginWithGoogle}
-                    onFailure={this.handleGoogleLoginFailure}
-                />
-                <br />
-                <Link to='/register' style={{ textAlign: 'center' }}>Don't have an account? Register </Link> |   
+                    <br />
+                    <Link to='/register' style={{ textAlign: 'center' }}>Don't have an account? Register </Link> |
                 <Link to='/forgotPassword' style={{ textAlign: 'center' }}> Forgot password?</Link>
+                </div>
             </>
         )
     }

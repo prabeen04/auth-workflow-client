@@ -37,59 +37,62 @@ class Register extends Component {
         const disabled = !email || !password || password !== confirmPassword
         return (
             <>
-                <h3 className='title'>Register</h3>
-                <form onSubmit={this.handleSubmit} method='post'>
-                    <div className='flex-container horizontally-center' style={{ flexDirection: 'column' }}>
-                        <TextInput
-                            name='userName'
-                            value={userName}
-                            onChange={this.handleChange}
-                            placeholder='John'
-                            label='User name'
-                        />
-                        <TextInput
-                            isRequired
-                            type='email'
-                            name='email'
-                            value={email}
-                            onChange={this.handleChange}
-                            placeholder='example@example.com'
-                            label='Email'
-                        />
-                        <TextInput
-                            isRequired
-                            type='password'
-                            name='password'
-                            value={password}
-                            onChange={this.handleChange}
-                            placeholder='******'
-                            label='Password'
-                        />
-                        <TextInput
-                            isRequired
-                            type='password'
-                            name='confirmPassword'
-                            value={confirmPassword}
-                            onChange={this.handleChange}
-                            placeholder='******'
-                            label='Confirm password'
-                        />
-                        {/* <input
+                <div className='container'>
+
+                    <h3 className='title'>Register</h3>
+                    <form onSubmit={this.handleSubmit} method='post'>
+                        <div className='flex-container horizontally-center' style={{ flexDirection: 'column' }}>
+                            <TextInput
+                                name='userName'
+                                value={userName}
+                                onChange={this.handleChange}
+                                placeholder='John'
+                                label='User name'
+                            />
+                            <TextInput
+                                isRequired
+                                type='email'
+                                name='email'
+                                value={email}
+                                onChange={this.handleChange}
+                                placeholder='example@example.com'
+                                label='Email'
+                            />
+                            <TextInput
+                                isRequired
+                                type='password'
+                                name='password'
+                                value={password}
+                                onChange={this.handleChange}
+                                placeholder='******'
+                                label='Password'
+                            />
+                            <TextInput
+                                isRequired
+                                type='password'
+                                name='confirmPassword'
+                                value={confirmPassword}
+                                onChange={this.handleChange}
+                                placeholder='******'
+                                label='Confirm password'
+                            />
+                            {/* <input
                             type='file'
                             name='avatar'
                             onChange={this.handleFileChange}
                         /> */}
-                        <Upload setAvatar={this.setAvatar} />
-                        <Button
-                            type='primary'
-                            htmlType='submit'
-                            loading={registering}
-                            disabled={disabled}
-                            icon='login'>
-                            Register</Button>
-                    </div>
-                </form>
-                <Link to='/login' style={{ textAlign: 'center' }}>Already have an account? Login</Link>
+                            <Upload setAvatar={this.setAvatar} />
+                            <Button
+                                type='primary'
+                                htmlType='submit'
+                                loading={registering}
+                                disabled={disabled}
+                                icon='login'>
+                                Register</Button>
+                        </div>
+                    </form>
+                    <Link to='/login' style={{ textAlign: 'center' }}>Already have an account? Login</Link>
+                </div>
             </>
         )
     }

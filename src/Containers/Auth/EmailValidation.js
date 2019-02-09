@@ -26,7 +26,9 @@ class EmailValidation extends Component {
         if (validatingEmailError) return <p>Error while validating email ...</p>
         return (
             <>
-                <Link to='/'>Home</Link>
+                <div className='container'>
+                    <Link to='/'>Home</Link>
+                </div>
             </>
         )
     }
