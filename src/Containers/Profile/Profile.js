@@ -9,45 +9,40 @@ import { ViewEditCard } from "../../Components/Utils";
 import ChangePassword from './ChangePassword';
 import ChangeEmail from './ChangeEmail';
 
-export class Profile extends Component {
-
-  handleLogout = () => {
-    this.props.logout(this.callback)
+function Profile(props) {
+  const { user: { email, userName, avatar } } = props;
+  const avatarUrl = avatar && avatar.includes('googleusercontent.com') ? avatar : `${base_url}/image/${avatar}`
+  const handleLogout = () => {
+    props.logout(callback)
   }
-  callback = () => {
-    this.props.history.push('/login')
+  const callback = () => {
+    props.history.push('/login')
   }
-
-  render() {
-    const { user: { email, userName, avatar } } = this.props;
-    const avatarUrl = avatar && avatar.includes('googleusercontent.com') ? avatar : `${base_url}/image/${avatar}`
-    return (
-      <>
-        <img src={avatarUrl} alt="" style={{ width: 100, height: 100, borderRadius: '50%' }} />
-        <h3>{`Welcome ${userName}`}</h3>
-        <h2>{email}</h2>
-        <ViewEditCard>
-          {({ viewType }, toggleViewType) => (
-            viewType === 'view'
-              ? <a onClick={() => toggleViewType()}>Change email</a>
-              : <ChangeEmail toggleViewType={toggleViewType} />
-          )}
-        </ViewEditCard>
-        <br />
-        <ViewEditCard>
-          {({ viewType }, toggleViewType) => (
-            viewType === 'view'
-              ? <a onClick={() => toggleViewType()}>Change password</a>
-              : <ChangePassword toggleViewType={toggleViewType} />
-          )}
-        </ViewEditCard>
-        <br/>
-        <Button type='danger' onClick={this.handleLogout}>Logout</Button>
-      </>
-    )
-  }
+  return (
+    <>
+      <img src={avatarUrl} alt="" style={{ width: 100, height: 100, borderRadius: '50%' }} />
+      <h3>{`Welcome ${userName}`}</h3>
+      <h2>{email}</h2>
+      <ViewEditCard>
+        {({ viewType }, toggleViewType) => (
+          viewType === 'view'
+            ? <a onClick={() => toggleViewType()}>Change email</a>
+            : <ChangeEmail toggleViewType={toggleViewType} />
+        )}
+      </ViewEditCard>
+      <br />
+      <ViewEditCard>
+        {({ viewType }, toggleViewType) => (
+          viewType === 'view'
+            ? <a onClick={() => toggleViewType()}>Change password</a>
+            : <ChangePassword toggleViewType={toggleViewType} />
+        )}
+      </ViewEditCard>
+      <br />
+      <Button type='danger' onClick={handleLogout}>Logout</Button>
+    </>
+  )
 }
-
 const mapStateToProps = ({ auth }) => ({
   user: auth.user
 })
