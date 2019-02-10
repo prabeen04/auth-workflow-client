@@ -24,7 +24,7 @@ function Profile(props) {
       <img src={avatarUrl} alt="" style={{ width: 100, height: 100, borderRadius: '50%' }} />
       <h3>{`Welcome ${userName}`}</h3>
       <h2>{email}</h2>
-      <ChangeEmail/>&nbsp; | &nbsp;
+      <ChangeEmail/><br/>
       <ChangePassword/>
       <br/>
     <Button type='danger' onClick={handleLogout}>Logout</Button>
