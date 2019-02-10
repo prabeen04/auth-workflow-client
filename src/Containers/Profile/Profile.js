@@ -11,7 +11,8 @@ import ChangeEmail from './ChangeEmail';
 
 function Profile(props) {
   const { user: { email, userName, avatar } } = props;
-  const avatarUrl = avatar && avatar.includes('googleusercontent.com') ? avatar : `${base_url}/image/${avatar}`
+  const avatarUrl = avatar && avatar.includes('googleusercontent.com') ? avatar : `${base_url}/image/${avatar}`;
+  const { viewType, toggleViewType } = ViewEditCard()
   const handleLogout = () => {
     props.logout(callback)
   }
@@ -23,23 +24,10 @@ function Profile(props) {
       <img src={avatarUrl} alt="" style={{ width: 100, height: 100, borderRadius: '50%' }} />
       <h3>{`Welcome ${userName}`}</h3>
       <h2>{email}</h2>
-      <ViewEditCard>
-        {({ viewType }, toggleViewType) => (
-          viewType === 'view'
-            ? <a onClick={() => toggleViewType()}>Change email</a>
-            : <ChangeEmail toggleViewType={toggleViewType} />
-        )}
-      </ViewEditCard>
-      <br />
-      <ViewEditCard>
-        {({ viewType }, toggleViewType) => (
-          viewType === 'view'
-            ? <a onClick={() => toggleViewType()}>Change password</a>
-            : <ChangePassword toggleViewType={toggleViewType} />
-        )}
-      </ViewEditCard>
-      <br />
-      <Button type='danger' onClick={handleLogout}>Logout</Button>
+      <ChangeEmail/>&nbsp; | &nbsp;
+      <ChangePassword/>
+      <br/>
+    <Button type='danger' onClick={handleLogout}>Logout</Button>
     </>
   )
 }

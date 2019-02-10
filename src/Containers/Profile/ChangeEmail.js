@@ -4,9 +4,10 @@ import { bindActionCreators } from "redux";
 import { Button, message } from "antd";
 import TextInput from "../../Components/Form/TextInput";
 import { changeEmail } from "../Auth/AuthAction";
-
+import { ViewEditCard } from "../../Components/Utils";
 function ChangeEmail(props) {
     const [newEmail, setNewEmail] = useState('')
+    const { viewType, toggleViewType } = ViewEditCard()
     const changeEmailCallBack = (status) => {
         setNewEmail('')
         status === 'success'
@@ -20,26 +21,31 @@ function ChangeEmail(props) {
     }
     return (
         <>
-            <TextInput
-                isRequired
-                type='email'
-                name='newEmail'
-                value={newEmail}
-                label='Enter new email'
-                onChange={({ target: { value } }) => setNewEmail(value)}
-                placeholder='example@example.com'
-            />
-            <Button
-                type='primary'
-                loading={props.sendingEmail}
-                disabled={!newEmail}
-                onClick={handleChangeEmail}
-                icon='login'>
-                Change Email</Button>
-            <Button
-                type='danger'
-                onClick={props.toggleViewType}>
-                Cancel</Button>
+            {viewType === 'view'
+                ? <a onClick={toggleViewType}>Change email</a>
+                : <>
+                    <TextInput
+                        isRequired
+                        type='email'
+                        name='newEmail'
+                        value={newEmail}
+                        label='Enter new email'
+                        onChange={({ target: { value } }) => setNewEmail(value)}
+                        placeholder='example@example.com'
+                    />
+                    <Button
+                        type='primary'
+                        loading={props.sendingEmail}
+                        disabled={!newEmail}
+                        onClick={handleChangeEmail}
+                        icon='login'>
+                        Change Email</Button>
+                    <Button
+                        type='danger'
+                        onClick={toggleViewType}>
+                        Cancel</Button>
+                </>
+            }
         </>
     )
 }
