@@ -13,7 +13,7 @@ function ChangeEmail(props) {
         status === 'success'
             ? message.success('email sent for verification')
             : message.error('error changing email !')
-        props.toggleViewType()
+        toggleViewType()
     }
     const handleChangeEmail = () => {
         const { _id } = props.user;

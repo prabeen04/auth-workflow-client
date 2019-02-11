@@ -15,7 +15,7 @@ function ChangePassword(props) {
         setCurrentPassword('')
         setNewPassword('')
         setConfirmNewPassword('')
-        props.toggleViewType()
+        toggleViewType()
         status === 'success'
             ? message.success('password changed successfully !')
             : message.error(err.response && err.response.data && err.response.data.error)
