@@ -14,7 +14,7 @@ const EmailValidation = lazy(() => import('./Containers/Auth/EmailValidation'));
 const ForgotPassword = lazy(() => import('./Containers/Auth/ForgotPassword'))
 const SetPassword = lazy(() => import('./Containers/Auth/SetPassword'))
 const ResetPasswordLink = lazy(() => import('./Containers/Auth/ResetPasswordLink'))
-const Profile = lazy(() => import('./Containers/Profile/Profile'));
+const MainApp = lazy(() => import('./MainApp'));
 
 class App extends Component {
   render() {
@@ -29,7 +29,7 @@ class App extends Component {
               <Route exact path="/resetPassword/:token" component={ResetPasswordLink} />
               <Route exact path="/forgotPassword" component={ForgotPassword} />
               <Route exact path="/setPassword" component={SetPassword} />
-              <PrivateRoute path="/" component={Profile} />
+              <PrivateRoute path="/" component={MainApp} />
             </Switch>
           </Suspense>
         </AppErrorBoundary>
