@@ -12,7 +12,7 @@ export default function Image(props) {
         setImages({ ...imageState, isFetching: false, images: res.data.hits })
       })
       .catch(err => console.log(err))
-  })
+  }, [])
   return (
     <>
       <h2>image component</h2>
