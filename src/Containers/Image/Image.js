@@ -17,6 +17,9 @@ export default function Image(props) {
     <>
       <h2>image component</h2>
       {imageState.isFetching && <p>fetching images ...</p>}
+      {imageState.images && imageState.images.map(image => {
+        return <img src={image.previewURL} height={100} width={100}/>
+      })}
     </>
   )
 }
