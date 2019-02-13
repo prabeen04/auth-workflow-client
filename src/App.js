@@ -18,6 +18,7 @@ const MainApp = lazy(() => import('./MainApp'));
 
 class App extends Component {
   render() {
+    console.log(process)
     return (
       <>
         <AppErrorBoundary>

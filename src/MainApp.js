@@ -24,17 +24,17 @@ function MainApp(props) {
                     <Menu.Item key="3"><Link to='/profile'>Profile</Link></Menu.Item>
                 </Menu>
             </Header>
-                    <Content>
-                        <Suspense fallback='loading ...'>
-                            <Switch>
-                                <Route exact path='/' component={Activity} />
-                                <Route exact path='/image' component={Image} />
-                                <Route exact path='/profile' component={Profile} />
-                            </Switch>
-                        </Suspense>
-                    </Content>
+            <Content>
+                <Suspense fallback='loading ...'>
+                    <Switch>
+                        <Route exact path='/' component={Activity} />
+                        <Route exact path='/image' component={Image} />
+                        <Route exact path='/profile' component={Profile} />
+                    </Switch>
+                </Suspense>
+            </Content>
         </Layout>
 
-                )
-            }
-            export default MainApp;
+    )
+}
+export default MainApp;
