@@ -1,11 +1,22 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import { PIXABAY_URL, PIXABAY_KEY } from "../../Config/config";
 import axios from 'axios';
 import { ProgressiveImage } from "../../Components/Utils";
 import ImageForm from './ImageForm';
 export default function Image(props) {
   const [imageState, setImages] = useState({ isFetching: false, images: [] });
-  console.log(query)
+  const [query, setQuery] = useState('')
+
+  /**
+   * onChange event set query on input change
+   */
+  function onChange({ target: { value } }) {
+    setQuery(value)
+  }
+
+  /**
+   * call pixabay api
+   */
   useEffect(() => {
     setImages({ ...imageState, isFetching: true })
     axios.get(`${PIXABAY_URL}${PIXABAY_KEY}&q=react`)
@@ -17,7 +28,8 @@ export default function Image(props) {
   }, [])
   return (
     <>
-      <ImageForm />
+    <p>{query}</p>
+      <ImageForm onChange={onChange} value={query} />
       {imageState.isFetching && <p>fetching images ...</p>}
       {imageState.images && imageState.images.map((image, i) => {
         // return <img src={image.previewURL} height={100} width={100}/>
