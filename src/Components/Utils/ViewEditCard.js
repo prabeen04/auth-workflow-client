@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import { useState } from 'react'
 
 function ViewEditCard() {
     const [viewType, setViewType] = useState('view');

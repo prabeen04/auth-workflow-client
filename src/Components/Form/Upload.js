@@ -1,5 +1,5 @@
 import React from 'react';
-import { Upload, Icon, message } from 'antd';
+import { Upload, Icon } from 'antd';
 import { base_url } from '../../Config/config';
 import axios from 'axios';
 const token = localStorage.getItem('token');

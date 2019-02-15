@@ -1,6 +1,5 @@
 import React, { Component, lazy, Suspense } from 'react';
-import { Route, Switch, Redirect } from "react-router-dom";
-import axios from 'axios';
+import { Route, Switch } from "react-router-dom";
 import './App.css';
 import PrivateRoute from './Helpers/Auth/PrivateRoute';
 import AppErrorBoundary from './Helpers/ErrorBoundary/AppErrorBoundary'
