@@ -19,12 +19,16 @@ export default function Image(props) {
   return (
     <>
       <ImageForm />
+      <QueryContext.Consumer>
+        {(value) => <p>{value}</p>}
+      </QueryContext.Consumer>
       <p>{query}</p>
       {imageState.isFetching && <p>fetching images ...</p>}
-      {imageState.images && imageState.images.map(image => {
+      {imageState.images && imageState.images.map((image, i) => {
         // return <img src={image.previewURL} height={100} width={100}/>
         return (
           <ProgressiveImage
+            key={i}
             preview={image.previewURL}
             image={image.largeImageURL}
             width={200}
