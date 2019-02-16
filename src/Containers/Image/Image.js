@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { PIXABAY_URL, PIXABAY_KEY } from "../../Config/config";
 import axios from 'axios';
 import { ProgressiveImage } from "../../Components/Utils";
+import { CircularLoader } from "../../Components/Loaders";
 import ImageForm from './ImageForm';
 
 export default function Image(props) {
@@ -31,7 +32,7 @@ export default function Image(props) {
   return (
     <>
       <ImageForm onChange={onChange} onSubmit={getImages} value={query} /><br />
-      {imageState.isFetching && <p>fetching images ...</p>}
+      {imageState.isFetching && <CircularLoader />}
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
         {imageState.images && imageState.images.map((image, i) => {
           return (
