@@ -3,6 +3,7 @@ import { PIXABAY_URL, PIXABAY_KEY } from "../../Config/config";
 import axios from 'axios';
 import { ProgressiveImage } from "../../Components/Utils";
 import ImageForm from './ImageForm';
+
 export default function Image(props) {
   const [imageState, setImages] = useState({ isFetching: false, images: [] });
   const [query, setQuery] = useState('')
@@ -31,17 +32,19 @@ export default function Image(props) {
     <>
       <ImageForm onChange={onChange} onSubmit={getImages} value={query} /><br />
       {imageState.isFetching && <p>fetching images ...</p>}
-      {imageState.images && imageState.images.map((image, i) => {
-        return (
-          <ProgressiveImage
-            key={i}
-            preview={image.previewURL}
-            image={image.largeImageURL}
-            width={200}
-            height={200}
-          />
-        )
-      })}
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
+        {imageState.images && imageState.images.map((image, i) => {
+          return (
+            <ProgressiveImage
+              key={i}
+              preview={image.previewURL}
+              image={image.largeImageURL}
+              width={200}
+              height={200}
+            />
+          )
+        })}
+      </div>
     </>
   )
 }
