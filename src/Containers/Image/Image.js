@@ -17,7 +17,8 @@ export default function Image(props) {
   /**
    * call pixabay api
    */
-  function getImages() {
+  function getImages(e) {
+    e.preventDefault()
     setImages({ ...imageState, isFetching: true })
     axios.get(`${PIXABAY_URL}${PIXABAY_KEY}&q=${query}`)
       .then(res => {
