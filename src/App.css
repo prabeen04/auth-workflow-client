@@ -57,3 +57,10 @@
   -o-filter: blur(40px);
   filter: blur(40px);
 }
+.image-hover{
+  cursor: pointer;
+}
+.image-hover:hover{
+  transition: 2.6s all linear;
+  transform: scale(1.2)
+}

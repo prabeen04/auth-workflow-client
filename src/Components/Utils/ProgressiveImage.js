@@ -35,13 +35,17 @@ class ProgressiveImage extends Component {
             filter: `${loading ? 'blur(20px)' : ''}`,
             width: this.props.width || '100%',
             height: this.props.height || '100%',
-            padding: `${loading ? '20px' : ''}`, 
+            padding: `${loading ? '20px' : ''}`,
         }
     }
     render() {
         const { currentImage, loading } = this.state
         const { alt } = this.props
-        return <img style={this.style(loading)} src={currentImage} alt={alt} />
+        return <img
+            className='image-hover'
+            style={this.style(loading)}
+            src={currentImage} alt={alt}
+        />
     }
 }
 
