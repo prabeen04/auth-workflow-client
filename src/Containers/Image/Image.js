@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { Empty } from "antd";
 import { PIXABAY_URL, PIXABAY_KEY } from "../../Config/config";
 import axios from 'axios';
 import { ProgressiveImage } from "../../Components/Utils";
@@ -33,6 +34,7 @@ export default function Image(props) {
     <>
       <ImageForm onChange={onChange} onSubmit={getImages} value={query} /><br />
       {imageState.isFetching && <div style={{textAlign: 'center'}}><CircularLoader /></div>}
+      {!imageState.isFetching && !imageState.images.length && <div style={{textAlign: 'center'}}><Empty description='No images'/></div>}
       <div className={imageState.isFetching && 'blur'}style={{ margin: 10, display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
         {imageState.images && imageState.images.map((image, i) => {
           return (
