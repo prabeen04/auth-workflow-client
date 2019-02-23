@@ -32,7 +32,7 @@ export default function Image(props) {
   return (
     <>
       <ImageForm onChange={onChange} onSubmit={getImages} value={query} /><br />
-      {imageState.isFetching && <CircularLoader />}
+      {imageState.isFetching && <span><CircularLoader /></span>}
       <div className={imageState.isFetching && 'blur'}style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
         {imageState.images && imageState.images.map((image, i) => {
           return (

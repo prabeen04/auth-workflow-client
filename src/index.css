@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(#5c93ed, #c7d3e8, #d5deed);
+  background: #eee;
   font-family: "Roboto", "Charm", "Cuprum", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

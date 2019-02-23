@@ -62,5 +62,5 @@
 }
 .image-hover:hover{
   transition: 2.6s all linear;
-  transform: scale(1.2)
+  transform: scale(1.3)
 }
