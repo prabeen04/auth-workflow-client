@@ -12,7 +12,7 @@ export default function ImageForm({ onChange, value, onSubmit }) {
                         value={value}
                         placeholder='Search image ...'
                     />
-                    <Button type='primary' htmlType='submit'>Search</Button>
+                    <Button type='primary' htmlType='submit' icon='search'>Search</Button>
                 </div>
             </form>
         </>

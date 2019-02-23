@@ -59,8 +59,8 @@
 }
 .image-hover{
   cursor: pointer;
+  transition: 2.6s all linear;
 }
 .image-hover:hover{
-  transition: 2.6s all linear;
   transform: scale(1.3)
 }
