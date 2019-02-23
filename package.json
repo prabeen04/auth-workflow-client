@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "antd": "^3.12.4",
+    "antd": "^3.13.6",
     "axios": "^0.18.0",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
     "react-google-login": "^5.0.0",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
